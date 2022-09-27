@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import paginate from "../paginate";
 
 const url = "https://api.github.com/users/john-smilga/followers?per_page=100";
 
@@ -10,12 +11,11 @@ const useFetch = () => {
     try {
       const response = await fetch(url);
       const fetchData = await response.json();
-      console.log(
-        "🚀 ~ file: useFetch.jsx ~ line 11 ~ fetchData ~ fetchData",
-        fetchData
-      );
-
-      setData(fetchData);
+      // console.log(
+      //   "🚀 ~ file: useFetch.jsx ~ line 11 ~ fetchData ~ fetchData",
+      //   fetchData
+      // );
+      setData(paginate(fetchData));
     } catch (error) {
       console.log(error);
     }

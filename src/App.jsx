@@ -1,44 +1,84 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import useFetch from "./Hooks/useFetch";
 
 function App() {
   const { loading, data } = useFetch();
+  const [page, setPage] = useState(0);
+  const [newFollowers, setNewFollowers] = useState([]);
+  // if (loading) {
+  //   return (
+  //     <>
+  //       <h1 className="loading">Loading...</h1>
+  //     </>
+  //   );
+  // }
 
-  if (loading) {
-    return (
-      <>
-        <h1 className="loading">Loading...</h1>
-      </>
-    );
-  }
+  useEffect(() => {
+    if (loading) return;
+    setNewFollowers(data[page]);
+  }, [loading]);
+
+  const prevButton = () => {
+    setPage((old) => {
+      let newPage = old - 1;
+      if (newPage < 0) {
+        newPage = data.length - 1;
+      }
+      return newPage;
+    });
+  };
+  const nextButton = () => {
+    setPage((old) => {
+      let newPage = old + 1;
+      if (newPage > data.length - 1) {
+        newPage = 0;
+      }
+      return newPage;
+    });
+  };
 
   return (
     <>
-      <header class="header">
-        <section class="section-title">
-          <h1 class="title">Github Users</h1>
-          <article class="underline"></article>
-          <section class="indicator">
-            <article class="indicator-color"></article>
+      <header className="header">
+        <section className="section-title">
+          <h1 className="title">Github Users</h1>
+          <article className="underline"></article>
+          <section className="indicator">
+            <article className="indicator-color"></article>
           </section>
         </section>
       </header>
-      <main class="main">
-        <section class="cards-container">
-          {data.map((item) => {
+      <main className="main">
+        {loading ? <h1 className="loading">Loading...</h1> : null}
+        <section className="cards-container">
+          {newFollowers.map((item) => {
             return <Card {...item} key={item.id} />;
           })}
-
-          {/* <article class="card">
-            <img src="1" alt="user" />
-            <h2 class="card-title">Name</h2>
-            <a href="url" class="card-url">
-              view profile
-            </a>
-          </article> */}
         </section>
-        <section class="back-to-top"></section>
-        <section class="button-container"></section>
+        {!loading && (
+          <section className="btn-group">
+            <button className="btn btn-prev" onClick={prevButton}>
+              prev
+            </button>
+            {data.map((item, index) => {
+              return (
+                <button
+                  className={`"btn btn-number "   ${
+                    index === page ? "btn-active" : null
+                  }  `}
+                  onClick={() => setPage(index)}
+                  key={index}
+                >
+                  {index + 1}
+                </button>
+              );
+            })}
+            <button className="btn btn-next" onClick={nextButton}>
+              next
+            </button>
+          </section>
+        )}
       </main>
     </>
   );

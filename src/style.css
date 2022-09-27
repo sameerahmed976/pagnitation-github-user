@@ -214,6 +214,15 @@ img {
   border-radius: 1rem;
 }
 
+.loading {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+  color: teal;
+}
+
 @media only screen and (min-width: 576px) {
   .cards-container {
     grid-template-columns: repeat(auto-fit, minmax(180px, 0.4fr));
