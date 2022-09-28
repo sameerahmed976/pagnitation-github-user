@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     if (loading) return;
     setNewFollowers(data[page]);
-  }, [loading]);
+  }, [loading, page]);
 
   const prevButton = () => {
     setPage((old) => {
@@ -64,9 +64,7 @@ function App() {
             {data.map((item, index) => {
               return (
                 <button
-                  className={`"btn btn-number "   ${
-                    index === page ? "btn-active" : null
-                  }  `}
+                  className={`btn  ${index === page ? "btn-active" : null}  `}
                   onClick={() => setPage(index)}
                   key={index}
                 >

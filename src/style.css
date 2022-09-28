@@ -170,28 +170,28 @@ img {
   height: 0.5rem;
 }
 
-.button-container {
+.btn-group {
+  margin: 0 auto;
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
+  gap: 0.3rem;
   width: 90%;
-  margin: 0 auto;
-  gap: 0.5rem;
-  padding-bottom: 4rem;
-  align-items: center;
 }
 
 .btn {
-  font-size: 1.4rem;
-  width: 5rem;
-  height: 5rem;
-  color: gray;
-  background-color: white;
-  border: transparent;
-  border-radius: 50%;
-  transition: var(--transition-8);
-  border: 2px solid gray;
-  box-shadow: 1px 2px 3px #000;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  margin: 0.3rem;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-weight: bold;
+  border-radius: 3rem;
+  border: 1px solid gray;
+  background-color: whitesmoke;
   cursor: pointer;
 }
 
@@ -210,7 +210,8 @@ img {
 .btn-prev,
 .btn-next {
   width: 5rem;
-  height: 4rem;
+  height: 3rem;
+  vertical-align: middle;
   border-radius: 1rem;
 }
 
